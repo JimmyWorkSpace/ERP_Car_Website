@@ -1,0 +1,331 @@
+// 定义变量
+@primary-color: #1FBECD;
+@danger-color: #CD001D;
+@success-color: #06C152;
+@text-muted: #6c757d;
+@border-color: #eee;
+@bg-light: #f8f9fa;
+
+.car-detail {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .car-title {
+        color: @primary-color;
+        margin-bottom: 20px;
+        text-align: left;
+        font-weight: 560;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .price {
+        text-align: left;
+        padding-left: 2px;
+
+        span {
+            font-size: 1.8rem;
+            font-weight: 560;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .main-image {
+        position: relative;
+        padding-top: 60%;
+        /* 16:9 Aspect Ratio */
+
+        .swiper-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            .swiper-slide {
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: fill;
+                }
+            }
+
+            .swiper-button-prev,
+            .swiper-button-next {
+                color: white;
+                background: rgba(0, 0, 0, 0.3);
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+
+                &:after {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+
+    .video-container {
+        position: relative;
+        padding-bottom: 60%;
+        /* 16:9 */
+        height: 0;
+        overflow: hidden;
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .thumbnail-container {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+
+        .thumbnail {
+            width: 80px;
+            height: 60px;
+            cursor: pointer;
+            border: 2px solid transparent;
+
+            &.active {
+                border-color: @primary-color;
+            }
+        }
+    }
+
+    .specs {
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 20px;
+        padding-bottom: 0px;
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+
+        .col-6 {
+            flex: 0 0 33.333%;
+            max-width: 33.333%;
+            padding: 0 10px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .text-muted {
+            color: @text-muted;
+            font-weight: 500;
+            display: inline-block;
+            min-width: 60px;
+        }
+
+        .spec-name {
+            font-size: 0.85rem;
+            height: 1.5rem;
+            font-weight: normal;
+            border-left: 3px solid @primary-color;
+            /* 新增：左侧3px主色调边框 */
+            padding-left: 0.5rem;
+            /* 增加内边距避免内容贴边 */
+            width: 100%;
+            text-align: left;
+        }
+
+        .spec-value {
+            font-size: 1rem;
+            height: 1.6rem;
+            font-weight: 500;
+            border-left: 3px solid @border-color;
+            /* 新增：左侧3px边框色边框 */
+            padding-left: 0.5rem;
+            /* 增加内边距避免内容贴边 */
+            width: 100%;
+            text-align: left;
+            white-space: nowrap;
+            /* 禁止文本换行 */
+            overflow: hidden;
+            /* 隐藏溢出内容 */
+            text-overflow: ellipsis;
+            /* 溢出显示省略号 */
+        }
+    }
+
+    .dealer-info {
+        background-color: @bg-light;
+        padding: 0.6rem 1rem;
+        border-radius: 2px;
+
+        div {
+            margin-bottom: 5px;
+        }
+
+    }
+
+    .action-buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 15px;
+
+        .btn {
+            border-radius: 4px;
+            flex: 1;
+            color: white;
+            font-size: 1.1rem;
+            padding: 0.75rem;
+            height: 50px;
+
+            &-primary {
+                background-color: @danger-color;
+                border-color: @danger-color;
+            }
+
+            &-success {
+                background-color: @success-color;
+                border-color: @success-color;
+            }
+        }
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 0;
+
+            .btn {
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .tags {
+        padding: 15px 0;
+        border-top: 1px solid @border-color;
+        border-bottom: 1px solid @border-color;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .badge {
+            font-size: 1rem;
+            font-weight: normal;
+            border-radius: 4px;
+            padding: 0.5rem 0.75rem;
+        }
+    }
+
+    .text-left {
+        text-align: left;
+    }
+
+    .nav-tabs {
+        border-radius: 0;
+
+        .nav-link {
+            border-radius: 0;
+            border-color: transparent;
+            color: #666666;
+            font-size: 1rem;
+            padding: 0.75rem 1rem;
+
+            &:hover,
+            &.active {
+                color: white;
+                background-color: @primary-color;
+                border-color: @primary-color;
+                cursor: pointer;
+            }
+        }
+
+        @media (max-width: 768px) {
+            display: flex;
+            width: 100%;
+
+            .nav-item {
+                flex: 1;
+                text-align: center;
+            }
+        }
+
+    }
+
+    .dealer-intro {
+        div {
+            text-align: left;
+            margin: 3px 10px;
+        }
+    }
+
+    .equipment-header {
+        font-weight: bold;
+        font-size: 1.2em;
+        color: @primary-color;
+        text-align: left;
+        padding-bottom: 8px;
+        position: relative;
+        margin-bottom: 15px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, @primary-color, fade(@primary-color, 0%));
+        }
+    }
+
+    .equipment-section {
+        margin-bottom: 20px;
+    }
+
+    .equipment-row {
+        display: flex;
+        flex-direction: column;
+        /* 小屏幕默认垂直 */
+    }
+
+    @media (min-width: 768px) {
+        .equipment-row {
+            flex-direction: row;
+            /* 中等屏幕及以上水平 */
+        }
+    }
+
+    .equipment-name {
+        flex: 0 0 30px;
+        font-weight: bold;
+        text-align: left;
+        min-width: 6em;
+        font-size: 1em;
+        // color: @primary-color;
+    }
+
+    .equipment-tags {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .equipment-tag {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        padding: 0px 10px;
+        // background-color: fade(@primary-color, 10%);
+        // border-radius: 4px;
+        // border: 1px solid fade(@primary-color, 20%);
+        // color: darken(@primary-color, 10%);
+
+        i.bi-check {
+            color: @primary-color;
+            font-size: 1.1em;
+        }
+    }
+} 

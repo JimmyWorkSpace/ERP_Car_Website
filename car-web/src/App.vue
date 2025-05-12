@@ -1,17 +1,12 @@
 <template>
   <div id="app">
-    <CarDetail />
+    <router-view />  <!-- 路由匹配的组件将在此处渲染 -->
   </div>
 </template>
 
 <script>
-import CarDetail from './components/CarDetail.vue'
-
 export default {
-  name: 'App',
-  components: {
-    CarDetail
-  }
+  name: 'App'
 }
 </script>
 
