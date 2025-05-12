@@ -1,11 +1,13 @@
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 import axios from 'axios'  // 新增：引入axios
+import VueEasyLightbox from 'vue-easy-lightbox'  // 引入图片查看组件
 
 export default {
     components: {
         swiper,
-        swiperSlide
+        swiperSlide,
+        VueEasyLightbox  // 注册组件
     },
     data() {
         return {
@@ -82,7 +84,9 @@ export default {
                 { title: '車輛配備', code: 'car_equipments' },
                 { title: '車輛描述', code: 'car_desc' },
                 { title: '車商介紹', code: 'dealer_intro' },
-            ]
+            ],
+            visibleLightbox: false,  // 添加：控制灯箱显示状态
+            lightboxIndex: 0,        // 添加：灯箱当前显示的图片索引
         }
     },
     computed: {
@@ -104,6 +108,11 @@ export default {
                 }
             }));
             return result;
+        },
+        lightboxImages() {
+            return this.allSwaggerImages
+                .filter(media => media.type === 'image')
+                .map(media => media.url);
         }
     },
     mounted() {
@@ -201,6 +210,26 @@ export default {
                 return url.replace('youtu.be/', 'youtube.com/embed/');
             }
             return url;
+        },
+        showLightbox(index) {
+            // 只为图片类型打开灯箱，视频不处理
+            const imgIndex = this.getImageOnlyIndex(index);
+            if (imgIndex !== -1) {
+                this.lightboxIndex = imgIndex;
+                this.visibleLightbox = true;
+            }
+        },
+        getImageOnlyIndex(mixedIndex) {
+            const mediaItem = this.allSwaggerImages[mixedIndex];
+            if (mediaItem.type !== 'image') return -1;
+            
+            let count = 0;
+            for (let i = 0; i < mixedIndex; i++) {
+                if (this.allSwaggerImages[i].type === 'image') {
+                    count++;
+                }
+            }
+            return count;
         }
     }
 } 

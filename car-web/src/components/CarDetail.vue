@@ -16,7 +16,7 @@
                             <video v-else-if="media.type === 'video'" controls width="100%">
                                 <source :src="media.url" type="video/mp4">
                             </video>
-                            <img v-else :src="media.url" class="img-fluid rounded" alt="汽车图片">
+                            <img v-else :src="media.url" class="img-fluid rounded" alt="汽车图片" @click="showLightbox(index)">
                         </swiper-slide>
                         <div class="swiper-pagination" slot="pagination"></div>
                         <div class="swiper-button-prev" slot="button-prev"></div>
@@ -126,6 +126,14 @@
                 </div>
             </div>
         </div>
+
+        <!-- 添加图片查看器组件 -->
+        <vue-easy-lightbox
+            :visible="visibleLightbox"
+            :imgs="lightboxImages"
+            :index="lightboxIndex"
+            @hide="visibleLightbox = false"
+        ></vue-easy-lightbox>
     </div>
 </template>
 
