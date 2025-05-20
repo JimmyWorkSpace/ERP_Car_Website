@@ -1,19 +1,29 @@
 // 定义变量
-@primary-color: #1FBECD;
+@primary-color: #5ACFC9;
 @danger-color: #CD001D;
 @success-color: #06C152;
 @text-muted: #6c757d;
 @border-color: #eee;
 @bg-light: #f8f9fa;
+@title-color: #FA9F42;
+@line-color: #8AD879;
+@main-title-color: #F3533A;
 
 .car-detail {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 
+    .main-title {
+        font-size: 1.7rem;
+        font-weight: 560;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        color: @main-title-color;
+        margin: 0px 0px 15px 0px;
+    }
+
     .car-title {
-        color: @primary-color;
-        margin-bottom: 20px;
+        color: @title-color;
         text-align: left;
         font-weight: 560;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -22,11 +32,13 @@
     .price {
         text-align: left;
         padding-left: 2px;
+        color: @primary-color;
 
         span {
             font-size: 1.8rem;
-            font-weight: 560;
+            font-weight: 540;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            color: @primary-color;
         }
     }
 
@@ -81,6 +93,13 @@
         }
     }
 
+    .content-frame {
+        width: 100%;
+        min-height: 300px;
+        border: none;
+        overflow: hidden;
+    }
+
     .thumbnail-container {
         display: flex;
         gap: 10px;
@@ -99,10 +118,42 @@
         }
     }
 
-    .specs {
-        padding: 15px;
+    .btn-phone {
+        background-color: @primary-color;
+        color: white;
+        border: none;
+        padding: 5px 20px;
         border-radius: 5px;
-        margin-top: 20px;
+    }
+
+    .btn-line {
+        background-color: @line-color;
+        color: white;
+        border: none;
+        padding: 5px 20px;
+        border-radius: 5px;
+    }
+
+    .btn-line-id {
+        background-color: @line-color;
+        color: white;
+        border: none;
+        padding: 3px 12px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        
+        &:hover {
+            background-color: darken(@line-color, 10%);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .specs {
+        padding: 10px 0px 15px 5px;
+        border-radius: 5px;
         padding-bottom: 0px;
 
         .row {
@@ -127,7 +178,7 @@
         }
 
         .spec-name {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             height: 1.5rem;
             font-weight: normal;
             border-left: 3px solid @primary-color;
@@ -139,7 +190,7 @@
         }
 
         .spec-value {
-            font-size: 1rem;
+            font-size: 1.2rem;
             height: 1.6rem;
             font-weight: 500;
             border-left: 3px solid @border-color;
@@ -158,14 +209,65 @@
     }
 
     .dealer-info {
-        background-color: @bg-light;
+        // background-color: @bg-light;
         padding: 0.6rem 1rem;
         border-radius: 2px;
 
         div {
             margin-bottom: 5px;
         }
+    }
 
+    .dealer-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        gap: 20px;
+    }
+
+    .dealer-intro {
+        flex: 1;
+        min-width: 300px;
+        // background-color: @bg-light;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .dealer-intro-row {
+        display: flex;
+        margin-bottom: 12px;
+        align-items: center;
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .dealer-title {
+        flex: 0 0 100px;
+        font-weight: bold;
+        color: @primary-color;
+        text-align: left;
+    }
+
+    .dealer-content {
+        flex: 1;
+        text-align: left;
+    }
+
+    .dealer-cover {
+        flex: 1;
+        min-width: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+        }
     }
 
     .action-buttons {
@@ -250,14 +352,6 @@
                 text-align: center;
             }
         }
-
-    }
-
-    .dealer-intro {
-        div {
-            text-align: left;
-            margin: 3px 10px;
-        }
     }
 
     .equipment-header {
@@ -318,29 +412,39 @@
         align-items: center;
         gap: 3px;
         padding: 0px 10px;
-        // background-color: fade(@primary-color, 10%);
-        // border-radius: 4px;
-        // border: 1px solid fade(@primary-color, 20%);
-        // color: darken(@primary-color, 10%);
-
-        i.bi-check {
-            color: @primary-color;
-            font-size: 1.1em;
-        }
     }
 
-    .car-detail {
-        // 现有样式...
+    .guarantee-tags {
+        margin-bottom: 20px;
+    }
+
+    .guarantee-section {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .guarantee-name {
+        flex: 0 0 auto;
+        min-width: 10em;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+    }
+
+    .guarantee-desc {
+        flex: 1;
+        padding-left: 10px;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+        transition: opacity 0.3s;
         
-        .cursor-pointer {
-            cursor: pointer;
-            transition: opacity 0.3s;
-            
-            &:hover {
-                opacity: 0.9;
-            }
+        &:hover {
+            opacity: 0.9;
         }
-        
-        // 其他现有样式...
     }
 } 

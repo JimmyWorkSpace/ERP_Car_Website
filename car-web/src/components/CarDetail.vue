@@ -1,5 +1,8 @@
 <template>
     <div class="car-detail">
+        <div class="row main-title">
+            {{ carInfo.dealer.dealerName }} / {{ carInfo.saleTitle }}
+        </div>
         <!-- 第一行：图片和信息 -->
         <div class="row mb-4">
             <!-- 左侧图片轮播 -->
@@ -16,7 +19,8 @@
                             <video v-else-if="media.type === 'video'" controls width="100%">
                                 <source :src="media.url" type="video/mp4">
                             </video>
-                            <img v-else :src="media.url" class="img-fluid rounded" alt="汽车图片" @click="showLightbox(index)">
+                            <img v-else :src="media.url" class="img-fluid rounded" alt="汽车图片"
+                                @click="showLightbox(index)">
                         </swiper-slide>
                         <div class="swiper-pagination" slot="pagination"></div>
                         <div class="swiper-button-prev" slot="button-prev"></div>
@@ -33,7 +37,7 @@
             <div class="col-md-6">
                 <h2 class="car-title">{{ carInfo.title }}</h2>
                 <div class="price mb-3">
-                    <span class="text-danger h4">¥{{ carInfo.price }}</span>
+                    <span class="h4">${{ carInfo.price }}</span>
                 </div>
                 <div class="specs mb-3">
                     <div class="row">
@@ -44,29 +48,22 @@
                     </div>
                 </div>
                 <div class="action-buttons">
-                    <button class="btn btn-primary" @click="callPhone">
-                        <i class="bi bi-telephone"></i> 拨打电话: {{ carInfo.baseInfo.dealer.phone }}
+                    <button class="btn btn-phone" @click="callPhone" @mouseenter="phoneButtonHover = true" @mouseleave="phoneButtonHover = false">
+                        <i class="bi bi-telephone"></i> {{ phoneButtonHover ? carInfo.dealer.companyPhone || '暂无电话' : '撥打電話' }}
                     </button>
-                    <button class="btn btn-success" @click="contactLine">
-                        <i class="bi bi-chat-dots"></i> Line联系: {{ carInfo.baseInfo.dealer.line }}
+                    <button class="btn btn-line" @click="contactLine" @mouseenter="lineButtonHover = true" @mouseleave="lineButtonHover = false">
+                        <i class="bi bi-chat-dots"></i> {{ lineButtonHover ? carInfo.dealer.lineId || '暂无Line ID' : 'LINE' }}
                     </button>
                 </div>
                 <div class="dealer-info mt-3 text-left">
-                    <div class="dealer-contact">聯絡人： {{ carInfo.baseInfo.dealer.contact_person }}</div>
+                    <div class="dealer-contact">聯絡人： {{ carInfo.dealer.contactPerson || '--' }}</div>
                     <div class="dealer-address">
-                        賞車地址： {{ carInfo.baseInfo.dealer.address }}
-                        📍<a :href="'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(carInfo.baseInfo.dealer.address)"
+                        賞車地址： {{ carInfo.dealer.publicAddress }}
+                        📍<a :href="'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(carInfo.publicAddress)"
                             target="_blank">查看地圖</a>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- 第二行：标签信息 -->
-        <div class="tags mb-4">
-            <span class="badge bg-secondary me-2" v-for="(tag, index) in carInfo.tags.tags" :key="index">
-                {{ tag }}
-            </span>
         </div>
 
         <!-- 第三行：Tab页 -->
@@ -96,44 +93,73 @@
                     <div class="equipment-header">
                         賣家保證
                     </div>
-                    <div class="equipment-tags">
-                        <span class="equipment-tag" v-for="(tag, tagIndex) in sellerGuarantee" :key="tagIndex">
-                            <i class="iconfont">&#xe632;</i>{{ tag }}
-                        </span>
+                    <div class="guarantee-tags">
+                        <div class="guarantee-section" v-for="(gur, index) in carGuarantees" :key="index">
+                            <div class="guarantee-name"><i class="iconfont">&#xe632;</i>{{ gur.itemName }}</div>
+                            <div class="guarantee-desc">
+                                {{ gur.description }}
+                            </div>
+                        </div>
                     </div>
                     <div style="height: 1em;"></div>
-                    <div class="equipment-header">
-                        車輛特色
-                    </div>
-                    <div class="equipment-tags">
-                        <span class="equipment-tag" v-for="(tag, tagIndex) in vehicleFeatures" :key="tagIndex">
-                            <i class="iconfont">&#xe632;</i> {{ tag }}
-                        </span>
-                    </div>
                 </div>
                 <div v-show="activeTab.code === 'car_desc'">
-                    <div v-html="carDesc"></div>
+                    <iframe ref="contentFrame" class="content-frame" :srcdoc="getHtmlContent(carInfo.saleDescription)" frameborder="0" width="100%"></iframe>
                 </div>
                 <div v-show="activeTab.code === 'dealer_intro'">
-                    <div class="dealer-intro">
-                        <div class="dealer-name">{{ carInfo.baseInfo.dealer.name }}</div>
-                        <div class="dealer-address">{{ carInfo.baseInfo.dealer.address }}</div>
-                        <div class="dealer-contact">聯絡人： {{ carInfo.baseInfo.dealer.contact_person }}</div>
-                        <div class="dealer-phone">電話： {{ carInfo.baseInfo.dealer.phone }}</div>
-                        <div class="dealer-line">Line： {{ carInfo.baseInfo.dealer.line }}</div>
+                    <div class="dealer-container">
+                        <div class="dealer-intro">
+                            <div class="dealer-intro-row">
+                                <div class="dealer-title">店家名称</div>
+                                <div class="dealer-content">{{ carInfo.dealer.dealerName || '--' }}</div>
+                            </div>
+                            <div class="dealer-intro-row">
+                                <div class="dealer-title">店家地址</div>
+                                <div class="dealer-content">{{ carInfo.dealer.publicAddress || '--' }}</div>
+                            </div>
+                            <div class="dealer-intro-row">
+                                <div class="dealer-title">联络人</div>
+                                <div class="dealer-content">{{ carInfo.dealer.contactPerson || '--' }}</div>
+                            </div>
+                            <div class="dealer-intro-row">
+                                <div class="dealer-title">店家电话</div>
+                                <div class="dealer-content">{{ carInfo.dealer.companyPhone || '--' }}</div>
+                            </div>
+                            <div class="dealer-intro-row">
+                                <div class="dealer-title">手机</div>
+                                <div class="dealer-content">{{ carInfo.dealer.companyMobile || '--' }}</div>
+                            </div>
+                            <div class="dealer-intro-row">
+                                <div class="dealer-title">LINE</div>
+                                <div class="dealer-content">
+                                    <button 
+                                        class="btn-line-id" 
+                                        @click="contactLine" 
+                                        @mouseenter="lineIdHover = true" 
+                                        @mouseleave="lineIdHover = false"
+                                        v-if="carInfo.dealer.lineId">
+                                        <i class="bi bi-chat-dots"></i> {{ lineIdHover ? carInfo.dealer.lineId : 'LINE联络我' }}
+                                    </button>
+                                    <span v-else>--</span>
+                                </div>
+                            </div>
+                            <div class="dealer-intro-row">
+                                <div class="dealer-title">网址</div>
+                                <div class="dealer-content">{{ carInfo.dealer.website || '--' }}</div>
+                            </div>
+                        </div>
+                        <div class="dealer-cover">
+                            <img :src="carInfo.dealer.coverImage" alt="店家封面">
+                        </div>
                     </div>
-
+                    <iframe ref="dealerContentFrame" class="content-frame" :srcdoc="getHtmlContent(carInfo.dealer.description)" frameborder="0" width="100%"></iframe>
                 </div>
             </div>
         </div>
 
         <!-- 添加图片查看器组件 -->
-        <vue-easy-lightbox
-            :visible="visibleLightbox"
-            :imgs="lightboxImages"
-            :index="lightboxIndex"
-            @hide="visibleLightbox = false"
-        ></vue-easy-lightbox>
+        <vue-easy-lightbox :visible="visibleLightbox" :imgs="lightboxImages" :index="lightboxIndex"
+            @hide="visibleLightbox = false"></vue-easy-lightbox>
     </div>
 </template>
 
