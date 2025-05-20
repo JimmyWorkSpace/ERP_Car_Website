@@ -1,2 +1,7 @@
 car-web/dist/
 car-web/node_modules/
+ruoyi-vue/ruoyi-admin/bin/
+ruoyi-vue/ruoyi-common/bin/
+ruoyi-vue/ruoyi-framework/bin/
+ruoyi-vue/ruoyi-generator/bin/
+ruoyi-vue/ruoyi-quartz/bin/
