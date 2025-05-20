@@ -54,4 +54,11 @@ public class CarSalesServiceImpl implements CarSalesService {
 		example.createCriteria().andEqualTo("uid", uid);
 		return carSalesMapper.selectOneByExample(example);
 	}
+
+	@Override
+	public CarSalesEntity getById(Long carSaleId) {
+		Example example = new Example(CarSalesEntity.class);
+		example.createCriteria().andEqualTo("id", carSaleId);
+		return carSalesMapper.selectOneByExample(example);
+	}
 }

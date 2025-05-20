@@ -1,5 +1,6 @@
 package com.ruoyi.framework.config;
 
+import com.ruoyi.common.constant.DsConstants;
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -40,7 +41,7 @@ public class MasterDataSourceConfig {
 		return bean.getObject();
 	}
 
-	@Bean(name = "masterTransactionManager")
+	@Bean(name = DsConstants.tranMaster)
 	@Primary
 	public DataSourceTransactionManager masterTransactionManager(
 			@Qualifier("masterDataSource") DataSource dataSource) {

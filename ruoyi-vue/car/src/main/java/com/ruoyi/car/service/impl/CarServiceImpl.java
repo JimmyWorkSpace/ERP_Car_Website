@@ -123,7 +123,7 @@ public class CarServiceImpl implements CarService {
 				List<String> images = ftpService.listFiles(dir);
 				return images.stream().map(img -> imageService.replaceImagePrefix(dir + "/" + img)).collect(Collectors.toList());
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			log.error("从ftp获取图片信息失败", e);
 		}
 		return new ArrayList<>();
@@ -144,7 +144,7 @@ public class CarServiceImpl implements CarService {
 					}
 				}
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			log.error("从ftp获取图片信息失败", e);
 		}
 		return new ArrayList<>();

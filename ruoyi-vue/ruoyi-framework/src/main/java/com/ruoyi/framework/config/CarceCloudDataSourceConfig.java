@@ -1,5 +1,6 @@
-package com.ruoyi.car.config;
+package com.ruoyi.framework.config;
 
+import com.ruoyi.common.constant.DsConstants;
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -39,7 +40,7 @@ public class CarceCloudDataSourceConfig {
 		return bean.getObject();
 	}
 
-	@Bean(name = "carceCloudTransactionManager")
+	@Bean(name = DsConstants.tranCarceCloud)
 	public DataSourceTransactionManager carceCloudTransactionManager(
 			@Qualifier("carceCloudDataSource") DataSource dataSource) {
 		return new DataSourceTransactionManager(dataSource);

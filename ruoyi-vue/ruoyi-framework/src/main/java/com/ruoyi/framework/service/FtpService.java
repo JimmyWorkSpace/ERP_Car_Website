@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.ruoyi.framework.config.FtpProperties;
 
 @Service
+@Slf4j
 public class FtpService {
     private final FtpProperties ftpProperties;
     private final FTPClient ftpClient;
@@ -37,7 +39,7 @@ public class FtpService {
         }
     }
 
-    public List<String> listFiles(String remoteDir) throws IOException {
+    public List<String> listFiles(String remoteDir) throws Exception {
         List<String> fileList = new ArrayList<>();
 
         try {
@@ -47,8 +49,9 @@ public class FtpService {
             for (FTPFile file : files) {
                 fileList.add(file.getName());
             }
-        } finally {
-            disconnect();
+        } catch(Exception e) {
+            log.error("通过Ftp获取文件信息失败", e);
+            throw e;
         }
 
         return fileList;

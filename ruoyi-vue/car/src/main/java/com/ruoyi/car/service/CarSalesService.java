@@ -7,4 +7,6 @@ public interface CarSalesService {
 	String getUidById(Long id);
 
 	CarSalesEntity getByUid(String uid);
+
+  CarSalesEntity getById(Long carSaleId);
 }
