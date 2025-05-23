@@ -1,7 +1,12 @@
 <template>
     <div class="car-detail">
-        <div class="row main-title">
-            {{ carInfo.dealer.dealerName }} / {{ carInfo.saleTitle }}
+        <div class="main-title-container">
+            <div class="first-title">
+                {{ carInfo.dealer.dealerName }} / 
+            </div>
+            <div class="second-title">
+                {{ carInfo.saleTitle }}
+            </div>
         </div>
         <!-- 第一行：图片和信息 -->
         <div class="row mb-4">
@@ -101,16 +106,17 @@
                             </div>
                         </div>
                     </div>
-                    <div style="height: 1em;"></div>
-                </div>
-                <div v-show="activeTab.code === 'car_desc'">
+                    <div class="equipment-header">
+                        車輛描述
+                    </div>
                     <iframe ref="contentFrame" class="content-frame" :srcdoc="getHtmlContent(carInfo.saleDescription)" frameborder="0" width="100%"></iframe>
+                    <div style="height: 1em;"></div>
                 </div>
                 <div v-show="activeTab.code === 'dealer_intro'">
                     <div class="dealer-container">
                         <div class="dealer-intro">
                             <div class="dealer-intro-row">
-                                <div class="dealer-title">店家名称</div>
+                                <div class="dealer-title">店家名稱</div>
                                 <div class="dealer-content">{{ carInfo.dealer.dealerName || '--' }}</div>
                             </div>
                             <div class="dealer-intro-row">
@@ -118,15 +124,15 @@
                                 <div class="dealer-content">{{ carInfo.dealer.publicAddress || '--' }}</div>
                             </div>
                             <div class="dealer-intro-row">
-                                <div class="dealer-title">联络人</div>
+                                <div class="dealer-title">聯絡人</div>
                                 <div class="dealer-content">{{ carInfo.dealer.contactPerson || '--' }}</div>
                             </div>
                             <div class="dealer-intro-row">
-                                <div class="dealer-title">店家电话</div>
+                                <div class="dealer-title">店家電話</div>
                                 <div class="dealer-content">{{ carInfo.dealer.companyPhone || '--' }}</div>
                             </div>
                             <div class="dealer-intro-row">
-                                <div class="dealer-title">手机</div>
+                                <div class="dealer-title">手機</div>
                                 <div class="dealer-content">{{ carInfo.dealer.companyMobile || '--' }}</div>
                             </div>
                             <div class="dealer-intro-row">
@@ -138,13 +144,13 @@
                                         @mouseenter="lineIdHover = true" 
                                         @mouseleave="lineIdHover = false"
                                         v-if="carInfo.dealer.lineId">
-                                        <i class="bi bi-chat-dots"></i> {{ lineIdHover ? carInfo.dealer.lineId : 'LINE联络我' }}
+                                        <i class="bi bi-chat-dots"></i> {{ lineIdHover ? carInfo.dealer.lineId : 'LINE聯絡我' }}
                                     </button>
                                     <span v-else>--</span>
                                 </div>
                             </div>
                             <div class="dealer-intro-row">
-                                <div class="dealer-title">网址</div>
+                                <div class="dealer-title">網址</div>
                                 <div class="dealer-content">{{ carInfo.dealer.website || '--' }}</div>
                             </div>
                         </div>

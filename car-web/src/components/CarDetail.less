@@ -14,16 +14,49 @@
     max-width: 1200px;
     margin: 0 auto;
 
-    .main-title {
-        font-size: 1.7rem;
-        font-weight: 560;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        color: @main-title-color;
+    .main-title-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
         margin: 0px 0px 15px 0px;
+        white-space: nowrap;
+        color: @title-color;
+        
+        .first-title, .second-title {
+            display: inline-block;
+            font-weight: 560;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .first-title {
+            font-size: 1.7rem;
+            margin-right: 5px;
+        }
+        
+        .second-title {
+            font-size: 1.7rem;
+        }
+        
+        /* 响应式设计：在小屏幕上改变布局 */
+        @media (max-width: 768px) {
+            flex-direction: column;
+            align-items: flex-start;
+            white-space: normal;
+            
+            .first-title {
+                font-size: 1.3rem;
+                margin-bottom: 5px;
+            }
+            
+            .second-title {
+                font-size: 1.7rem;
+            }
+        }
     }
 
     .car-title {
-        color: @title-color;
+        color: @primary-color;
         text-align: left;
         font-weight: 560;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -32,13 +65,13 @@
     .price {
         text-align: left;
         padding-left: 2px;
-        color: @primary-color;
+        color: @title-color;
 
         span {
             font-size: 1.8rem;
             font-weight: 540;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            color: @primary-color;
+            color: @title-color;
         }
     }
 

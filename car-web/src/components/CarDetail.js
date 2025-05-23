@@ -39,7 +39,7 @@ export default {
             carGuarantees: [],
             tabs: [
                 { title: '車輛配備', code: 'car_equipments' },
-                { title: '車輛描述', code: 'car_desc' },
+                // { title: '車輛描述', code: 'car_desc' },
                 { title: '車商介紹', code: 'dealer_intro' },
             ],
             visibleLightbox: false,  // 添加：控制灯箱显示状态
