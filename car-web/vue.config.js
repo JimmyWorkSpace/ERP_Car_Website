@@ -9,6 +9,7 @@ module.exports = {
         }
     },
     devServer: {
+        historyApiFallback: true,  // 添加history模式支持
         proxy: {
           // 匹配所有以/api开头的请求路径
           '/api/api': {
