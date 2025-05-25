@@ -1,6 +1,6 @@
 carce:
   prefix: https://testcloud.carce.cc
-  webUrl: https://sale.carce.cc/
+  webUrl: https://sale.carce.cc
   ftp:
     server: 125.227.138.209
     port: 21

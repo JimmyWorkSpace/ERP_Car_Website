@@ -333,6 +333,18 @@ export default {
                     if (_this.carInfo.dealer.photos && _this.carInfo.dealer.photos.length > 0) {
                         _this.carInfo.dealer.coverImage = _this.carInfo.dealer.photos[0];
                     }
+
+                    document.title = _this.carInfo.dealer.dealerName + '/' + _this.carInfo.saleTitle;
+                    // 添加或更新 Open Graph 标签
+                    const ogTitle = document.querySelector('meta[property="og:title"]');
+                    if (ogTitle) {
+                        ogTitle.setAttribute('content', document.title);
+                    } else {
+                        const meta = document.createElement('meta');
+                        meta.setAttribute('property', 'og:title');
+                        meta.content = document.title;
+                        document.getElementsByTagName('head')[0].appendChild(meta);
+                    }
                     console.log('获取经销商信息成功:', _this.carInfo.dealer);
                 })
                 .catch(error => {
@@ -369,7 +381,7 @@ export default {
 
                     };
                     // 这里将网页标题设置为title
-                    document.title = _this.carInfo.title;
+                    // document.title = _this.carInfo.title;
                     console.log(_this.carInfo.specs);
                     _this.fetchDealerInfo(carId);
                 })
@@ -401,6 +413,75 @@ export default {
             setTimeout(() => {
                 location.href = `https://line.me/R/ti/p/${this.carInfo.dealer.lineId}`;
             }, 1000);
+        },
+        shareToLine() {
+            // 获取当前页面URL
+            const currentUrl = window.location.href;
+            
+            // 获取当前显示的图片URL
+            let shareImage = '';
+            if (this.carImages && this.carImages.length > 0) {
+                shareImage = this.carImages[0];
+            }
+            
+            // 构建分享文本
+            const shareText = `${this.carInfo.title} - ${this.carInfo.dealer.dealerName || ''}
+價格: $${this.carInfo.price || '--'}
+${currentUrl}`;
+            
+            // 检测是否为移动设备
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            // 构建Line应用调用URL
+            const lineAppUrl = `line://msg/text/${encodeURIComponent(shareText)}`;
+            
+            // 构建网页版分享URL
+            let webShareUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`;
+            if (shareImage) {
+                webShareUrl += `&image=${encodeURIComponent(shareImage)}`;
+            }
+            
+            // 尝试调用Line应用（移动端和桌面端都尝试）
+            const tryLineApp = () => {
+                let appOpened = false;
+                
+                // 监听页面失去焦点，表示应用可能被打开
+                const onBlur = () => {
+                    appOpened = true;
+                    window.removeEventListener('blur', onBlur);
+                };
+                window.addEventListener('blur', onBlur);
+                
+                // 尝试打开Line应用
+                if (isMobile) {
+                    window.location.href = lineAppUrl;
+                } else {
+                    // 桌面设备使用iframe尝试，避免页面跳转
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = lineAppUrl;
+                    document.body.appendChild(iframe);
+                    setTimeout(() => {
+                        document.body.removeChild(iframe);
+                    }, 1000);
+                }
+                
+                // 设置超时时间：移动端2秒，桌面端1.5秒
+                const timeout = isMobile ? 2000 : 1500;
+                setTimeout(() => {
+                    window.removeEventListener('blur', onBlur);
+                    if (!appOpened) {
+                        // Line应用没有打开，使用网页版分享
+                        if (isMobile) {
+                            window.open(webShareUrl, '_blank');
+                        } else {
+                            window.open(webShareUrl, '_blank', 'width=600,height=400');
+                        }
+                    }
+                }, timeout);
+            };
+            
+            tryLineApp();
         },
         isYoutubeVideo(url) {
             return url && (url.includes('youtube.com') || url.includes('youtu.be'));

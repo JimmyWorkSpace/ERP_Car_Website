@@ -47,7 +47,7 @@ public class CommonApiController extends BaseController {
 	public RedirectView shareRedirect(@PathVariable("id") Long id) {
 		String uid = carSalesService.getUidById(id);
 		if (uid != null) {
-			return new RedirectView(webUrl + "/#/car/detail/" + uid);
+			return new RedirectView(webUrl + "/" + uid);
 		}
 		return new RedirectView("/error"); // 跳转到错误页
 	}

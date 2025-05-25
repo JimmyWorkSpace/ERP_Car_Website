@@ -36,6 +36,12 @@
                     <img v-for="(media, index) in allSwaggerImages" :key="index" :src="getThumbnailSrc(media)"
                         class="thumbnail" :class="{ active: currentMediaIndex === index }" @click="changeMedia(index)">
                 </div>
+                <!-- Line分享按钮 -->
+                <div class="share-container mt-3">
+                    <button class="btn btn-share-line" @click="shareToLine">
+                        <i class="iconfont">&#xe6f3;</i> LINE 分享
+                    </button>
+                </div>
             </div>
 
             <!-- 右侧信息 -->

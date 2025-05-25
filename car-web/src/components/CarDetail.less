@@ -26,7 +26,6 @@
         .first-title, .second-title {
             display: inline-block;
             font-weight: 560;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .first-title {
@@ -60,7 +59,6 @@
         color: @primary-color;
         text-align: left;
         font-weight: 560;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .price {
@@ -71,7 +69,6 @@
         span {
             font-size: 1.8rem;
             font-weight: 540;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             color: @title-color;
         }
     }
@@ -181,8 +178,41 @@
         &:hover {
             background-color: darken(@line-color, 10%);
             transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+    }
+
+    .btn-share-line {
+        background: none;
+        color: #6c757d;
+        border: none;
+        padding: 8px 0;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        width: auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        text-decoration: none;
+        
+        &:hover {
+            color: @line-color;
+            text-decoration: none;
+        }
+        
+        &:focus {
+            outline: none;
+            text-decoration: none;
+        }
+        
+        i {
+            font-size: 1.1rem;
+        }
+    }
+
+    .share-container {
+        text-align: right;
     }
 
     .specs {
@@ -266,7 +296,6 @@
         // background-color: @bg-light;
         border-radius: 8px;
         padding: 15px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     }
 
     .dealer-intro-row {
@@ -300,7 +329,6 @@
             max-width: 100%;
             max-height: 400px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             object-fit: cover;
         }
     }
