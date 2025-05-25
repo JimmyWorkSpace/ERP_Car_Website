@@ -23,6 +23,7 @@ import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.framework.dto.R;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
 @RequestMapping(value = "api")
@@ -43,12 +44,12 @@ public class CommonApiController extends BaseController {
 	private CarDealerService carDealerService;
 
 	@GetMapping("car/sharePath/{id}")
-	public String share(HttpServletRequest req, @PathVariable("id") Long id) {
+	public RedirectView shareRedirect(@PathVariable("id") Long id) {
 		String uid = carSalesService.getUidById(id);
 		if (uid != null) {
-			return webUrl + "/#/car/detail/" + uid;
+			return new RedirectView(webUrl + "/#/car/detail/" + uid);
 		}
-		return "根据ID" + id + "未找到相关信息";
+		return new RedirectView("/error"); // 跳转到错误页
 	}
 
 	/**

@@ -1,6 +1,6 @@
 carce:
   prefix: https://testcloud.carce.cc
-  webUrl: http://nas.yanjiashuo.cn:9999
+  webUrl: https://sale.carce.cc/
   ftp:
     server: 125.227.138.209
     port: 21

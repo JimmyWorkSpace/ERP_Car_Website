@@ -46,7 +46,7 @@
                 </div>
                 <div class="specs mb-3">
                     <div class="row">
-                        <div class="col-3  mb-3" v-for="(spec, index) in carInfo.specs" :key="index">
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3" v-for="(spec, index) in carInfo.specs" :key="index">
                             <div class="spec-name text-muted">{{ spec.name }}</div>
                             <div class="spec-value">{{ spec.value }}</div>
                         </div>
