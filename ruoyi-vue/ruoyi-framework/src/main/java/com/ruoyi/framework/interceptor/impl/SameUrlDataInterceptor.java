@@ -10,11 +10,13 @@ import org.springframework.stereotype.Component;
 import com.alibaba.fastjson.JSONObject;
 import com.ruoyi.common.annotation.RepeatSubmit;
 import com.ruoyi.common.constant.Constants;
-import com.ruoyi.common.core.redis.RedisCache;
+import com.ruoyi.common.core.cache.MemoryCache;
+import com.ruoyi.common.core.domain.model.LoginUser;
 import com.ruoyi.common.filter.RepeatedlyRequestWrapper;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.http.HttpHelper;
 import com.ruoyi.framework.interceptor.RepeatSubmitInterceptor;
+import com.ruoyi.framework.web.service.TokenService;
 
 /**
  * 判断请求url和数据是否和上一次相同，
@@ -34,7 +36,10 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
     private String header;
 
     @Autowired
-    private RedisCache redisCache;
+    private MemoryCache memoryCache;
+
+    @Autowired
+    private TokenService tokenService;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -63,9 +68,9 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
         String submitKey = StringUtils.trimToEmpty(request.getHeader(header));
 
         // 唯一标识（指定key + url + 消息头）
-        String cacheRepeatKey = Constants.REPEAT_SUBMIT_KEY + url + submitKey;
+        String cacheRepeatKey = Constants.REPEAT_SUBMIT_KEY + submitKey + nowParams;
 
-        Object sessionObj = redisCache.getCacheObject(cacheRepeatKey);
+        Object sessionObj = memoryCache.getCacheObject(cacheRepeatKey);
         if (sessionObj != null)
         {
             Map<String, Object> sessionMap = (Map<String, Object>) sessionObj;
@@ -79,8 +84,9 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
             }
         }
         Map<String, Object> cacheMap = new HashMap<String, Object>();
-        cacheMap.put(url, nowDataMap);
-        redisCache.setCacheObject(cacheRepeatKey, cacheMap, annotation.interval(), TimeUnit.MILLISECONDS);
+        cacheMap.put(REPEAT_PARAMS, nowParams);
+        cacheMap.put(REPEAT_TIME, System.currentTimeMillis());
+        memoryCache.setCacheObject(cacheRepeatKey, cacheMap, annotation.interval(), TimeUnit.MILLISECONDS);
         return false;
     }
 

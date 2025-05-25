@@ -11,7 +11,7 @@ module.exports = {
     devServer: {
         proxy: {
           // 匹配所有以/api开头的请求路径
-          '/api': {
+          '/api/api': {
             target: 'http://nas.yanjiashuo.cn:9999/api',  // 转发目标地址
             // target: 'http://127.0.0.1:8081/api',  // 转发目标地址
             changeOrigin: true,  // 允许跨域

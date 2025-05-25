@@ -1,8 +1,8 @@
 package com.ruoyi.framework.aspectj;
 
 import java.lang.reflect.Method;
-import java.util.Collections;
-import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -10,10 +10,9 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.stereotype.Component;
 import com.ruoyi.common.annotation.RateLimiter;
+import com.ruoyi.common.core.cache.MemoryCache;
 import com.ruoyi.common.enums.LimitType;
 import com.ruoyi.common.exception.ServiceException;
 import com.ruoyi.common.utils.ServletUtils;
@@ -31,21 +30,8 @@ public class RateLimiterAspect
 {
     private static final Logger log = LoggerFactory.getLogger(RateLimiterAspect.class);
 
-    private RedisTemplate<Object, Object> redisTemplate;
-
-    private RedisScript<Long> limitScript;
-
     @Autowired
-    public void setRedisTemplate1(RedisTemplate<Object, Object> redisTemplate)
-    {
-        this.redisTemplate = redisTemplate;
-    }
-
-    @Autowired
-    public void setLimitScript(RedisScript<Long> limitScript)
-    {
-        this.limitScript = limitScript;
-    }
+    private MemoryCache memoryCache;
 
     @Before("@annotation(rateLimiter)")
     public void doBefore(JoinPoint point, RateLimiter rateLimiter) throws Throwable
@@ -55,15 +41,24 @@ public class RateLimiterAspect
         int count = rateLimiter.count();
 
         String combineKey = getCombineKey(rateLimiter, point);
-        List<Object> keys = Collections.singletonList(combineKey);
+        
         try
         {
-            Long number = redisTemplate.execute(limitScript, keys, count, time);
-            if (StringUtils.isNull(number) || number.intValue() > count)
+            // 获取或创建计数器
+            AtomicInteger counter = memoryCache.getCacheObject(combineKey);
+            if (counter == null) {
+                counter = new AtomicInteger(0);
+                memoryCache.setCacheObject(combineKey, counter, time, TimeUnit.SECONDS);
+            }
+            
+            int currentCount = counter.incrementAndGet();
+            
+            if (currentCount > count)
             {
                 throw new ServiceException("访问过于频繁，请稍候再试");
             }
-            log.info("限制请求'{}',当前请求'{}',缓存key'{}'", count, number.intValue(), key);
+            
+            log.info("限制请求'{}',当前请求'{}',缓存key'{}'", count, currentCount, key);
         }
         catch (ServiceException e)
         {

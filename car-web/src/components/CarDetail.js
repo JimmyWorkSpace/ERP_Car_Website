@@ -271,7 +271,7 @@ export default {
         async fetchCarImages(carId) {
             let _this = this;
             try {
-                var response = await axios.get(`/api/car/image/${carId}`)  // 替换为实际后端接口地址
+                var response = await axios.get(`/api/api/car/image/${carId}`)  // 替换为实际后端接口地址
                 _this.carImages = response.data.data;
                 console.log('获取车辆图片成功:', _this.carImages);
             }
@@ -283,7 +283,7 @@ export default {
         async fetchCarVideo(carId) {
             let _this = this;
             try {
-                var response = await axios.get(`/api/car/video/${carId}`)  // 替换为实际后端接口地址
+                var response = await axios.get(`/api/api/car/video/${carId}`)  // 替换为实际后端接口地址
                 _this.carVideo = response.data.data;
                 console.log('获取车辆视频成功:', _this.carVideo);
             }
@@ -294,7 +294,7 @@ export default {
         },
         fetchCarEquipments(carId) {
             let _this = this;
-            axios.get(`/api/car/equipment/${carId}`)  // 替换为实际后端接口地址
+            axios.get(`/api/api/car/equipment/${carId}`)  // 替换为实际后端接口地址
                 .then(response => {
                     // 成功获取数据后赋值给data属性
                     // this.carInfo = response.data.carInfo
@@ -309,7 +309,7 @@ export default {
         // 获取卖家保证
         fetchCarGuarantees(carId) {
             let _this = this;
-            axios.get(`/api/car/guarantee/${carId}`)  // 替换为实际后端接口地址
+            axios.get(`/api/api/car/guarantee/${carId}`)  // 替换为实际后端接口地址
                 .then(response => {
                     // 成功获取数据后赋值给data属性
                     // this.carInfo = response.data.carInfo
@@ -325,7 +325,7 @@ export default {
         fetchDealerInfo(garageId) {
             console.log('获取经销商信息', garageId);
             let _this = this;
-            axios.get(`/api/car/dealer/${garageId}`)  // 替换为实际后端接口地址
+            axios.get(`/api/api/car/dealer/${garageId}`)  // 替换为实际后端接口地址
                 .then(response => {
                     // 成功获取数据后赋值给data属性
                     // this.carInfo = response.data.carInfo
@@ -343,7 +343,7 @@ export default {
         // 新增：定义获取车辆详情的请求方法
         fetchCarBaseInfo(carId) {
             let _this = this;
-            axios.get(`/api/car/baseInfo/${carId}`)  // 替换为实际后端接口地址
+            axios.get(`/api/api/car/baseInfo/${carId}`)  // 替换为实际后端接口地址
                 .then(response => {
                     // 成功获取数据后赋值给data属性
                     // this.carInfo = response.data.carInfo
