@@ -24,6 +24,7 @@ public class CarSalePhotoServiceImpl implements CarSalePhotoService {
   @Resource
   private CarSalesService  carSalesService;
 
+  @Deprecated
   @Override
   @Transactional(rollbackFor = Exception.class , transactionManager = DsConstants.tranCarceCloud)
   public void deleteAndBatchInsert(Long carSaleId, List<String> images) {

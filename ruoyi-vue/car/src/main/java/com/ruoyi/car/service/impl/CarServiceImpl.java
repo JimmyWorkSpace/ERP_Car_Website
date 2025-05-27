@@ -46,6 +46,12 @@ public class CarServiceImpl implements CarService {
 		return carMapper.selectByPrimaryKey(saleId);
 	}
 
+	/**
+	 * 获取车辆基本信息
+	 *
+	 * @param saleId
+	 * @return
+	 */
 	@Override
 	public CarBaseInfoDto getBaseInfoBySaleId(long saleId) {
 		CarBaseInfoDto result = carMapper.selectCarBaseInfoBySaleId(saleId);
@@ -53,11 +59,17 @@ public class CarServiceImpl implements CarService {
 		return result;
 	}
 
+	/**
+	 * 获取车辆配置信息
+	 * @param saleId
+	 * @return
+	 */
 	@Override
 	public List<CarEquipmentDto> getEquipmentBySaleId(Long saleId) {
 		List<CarEquipmentDto> result = new ArrayList<>();
 		List<CarEquipment> list = carMapper.selectCarEquipmentBySaleId(saleId);
 		if (CollUtil.isNotEmpty(list)) {
+			// type = 1 安全配備 type = 2 影音設備 type = 3 車輛配備
 			result.add(new CarEquipmentDto("車輛配備", list.stream().filter(tag -> Integer.valueOf(3).equals(tag.getType()))
 					.map(CarEquipment::getItemName).distinct().collect(Collectors.toList())));
 			result.add(new CarEquipmentDto("安全配備", list.stream().filter(tag -> Integer.valueOf(1).equals(tag.getType()))
@@ -68,6 +80,11 @@ public class CarServiceImpl implements CarService {
 		return result;
 	}
 
+	/**
+	 * 获取车辆保证信息
+	 * @param saleId
+	 * @return
+	 */
 	@Override
 	public List<CarGuaranteeDto> getGuaranteeBySaleId(Long saleId) {
 		List<CarGuarantee> list = carMapper.selectCarGuaranteeBySaleId(saleId);
@@ -80,9 +97,15 @@ public class CarServiceImpl implements CarService {
 		}).collect(Collectors.toList());
 	}
 
+	/**
+	 * 根据uid获取车辆基本信息
+	 * @param uid
+	 * @return
+	 */
 	@Override
 	public CarBaseInfoDto getBaseInfoByUidId(String uid) {
 		CarBaseInfoDto result = carMapper.selectCarBaseInfoByUid(uid);
+//		将图片地址替换为图片服务器地址，加上前缀
 		result.setSaleDescription(imageService.replaceImagePrefixInHtml(result.getSaleDescription()));
 		return result;
 	}
@@ -138,8 +161,10 @@ public class CarServiceImpl implements CarService {
 				List<String> images = ftpService.listFiles(dir);
 				for(String img : images) {
 					if(!img.endsWith(".txt")) {
+//						非txt文件，替换视频地址，当做视频返回
 						return CollUtil.newArrayList(imageService.replaceImagePrefix(dir + "/" + img));
 					}else {
+//						如果是txt文件，取文件名作为youtube的id，拼接youtube的播放地址
 						return CollUtil.newArrayList("https://www.youtube.com/watch?v=" + img.substring(0, img.lastIndexOf(".")));
 					}
 				}

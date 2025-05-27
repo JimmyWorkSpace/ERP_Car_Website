@@ -24,6 +24,11 @@ public class SyncImageDataTask {
 
   @Resource
   private CarSalePhotoService carSalePhotoService;
+
+  /**
+   * 不用
+   */
+  @Deprecated
   public void syncImageData() {
 
     String basePath = "/img";

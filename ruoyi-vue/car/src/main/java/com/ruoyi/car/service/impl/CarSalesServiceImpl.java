@@ -25,6 +25,11 @@ public class CarSalesServiceImpl implements CarSalesService {
 	@Resource
 	private CarSalesMapper carSalesMapper;
 
+	/**
+	 * 根据id获取uid,  如果uid为空则生成一个
+	 * @param id
+	 * @return
+	 */
 	@Override
 	public String getUidById(Long id) {
 		CarSalesEntity cs = carSalesMapper.getById(id);
@@ -38,6 +43,10 @@ public class CarSalesServiceImpl implements CarSalesService {
 		return null;
 	}
 
+	/**
+	 * 生成短码
+	 * @return
+	 */
 	private String generateShortCode() {
 		UUID uuid = UUID.randomUUID();
 		String shortId = "";

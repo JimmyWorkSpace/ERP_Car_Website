@@ -65,6 +65,11 @@ public class CarDealerServiceImpl implements CarDealerService {
 		return result;
 	}
 
+	/**
+	 * 根据uid获取车商信息
+	 * @param uid
+	 * @return
+	 */
 	@Override
 	public CarDealerInfoDto getInfoByUid(String uid) {
 //		Example example = new Example(CarSalesEntity.class);

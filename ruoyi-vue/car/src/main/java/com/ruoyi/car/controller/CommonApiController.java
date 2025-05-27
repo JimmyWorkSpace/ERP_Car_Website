@@ -43,7 +43,13 @@ public class CommonApiController extends BaseController {
 	@Resource
 	private CarDealerService carDealerService;
 
+	/**
+	 * 车辆分享链接生成(弃用)
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("car/sharePath/{id}")
+	@Deprecated
 	public RedirectView shareRedirect(@PathVariable("id") Long id) {
 		String uid = carSalesService.getUidById(id);
 		if (uid != null) {
@@ -55,7 +61,7 @@ public class CommonApiController extends BaseController {
 	/**
 	 * 车辆基本信息
 	 * 
-	 * @param id
+	 * @param uid
 	 * @return
 	 */
 	@GetMapping("car/baseInfo/{uid}")
@@ -67,7 +73,7 @@ public class CommonApiController extends BaseController {
 	/**
 	 * 车辆配备
 	 * 
-	 * @param id
+	 * @param uid
 	 * @return
 	 */
 	@GetMapping("car/equipment/{uid}")
@@ -79,7 +85,7 @@ public class CommonApiController extends BaseController {
 	/**
 	 * 卖家保证
 	 * 
-	 * @param id
+	 * @param uid
 	 * @return
 	 */
 	@GetMapping("car/guarantee/{uid}")
@@ -88,17 +94,32 @@ public class CommonApiController extends BaseController {
 		return new R<>(result);
 	}
 
+	/**
+	 * 车辆卖家信息
+	 * @param uid
+	 * @return
+	 */
 	@GetMapping("car/dealer/{uid}")
 	public R<CarDealerInfoDto> dealer(@PathVariable("uid") String uid) {
 		CarDealerInfoDto result = carDealerService.getInfoByUid(uid);
 		return new R<>(result);
 	}
-	
+
+	/**
+	 * 车辆图片
+	 * @param uid
+	 * @return
+	 */
 	@GetMapping("car/image/{uid}")
 	public R<List<String>> images(@PathVariable("uid") String uid){
 		return new R<>(carService.getImagesByUid(uid));
 	}
-	
+
+	/**
+	 * 车辆视频
+	 * @param uid
+	 * @return
+	 */
 	@GetMapping("car/video/{uid}")
 	public R<List<String>> video(@PathVariable("uid") String uid){
 		return new R<>(carService.getVideoByUid(uid));
