@@ -42,7 +42,7 @@ public class CarSalesServiceImpl implements CarSalesService {
 		UUID uuid = UUID.randomUUID();
 		String shortId = "";
 		do {
-			shortId = uuid.toString().replace("-", "").substring(0, 8);
+			shortId = uuid.toString().replace("-", "").substring(2, 6);
 		}
 		while (getByUid(shortId) != null);
 		return shortId;

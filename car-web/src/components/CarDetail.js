@@ -35,6 +35,7 @@ export default {
             carInfo: {
                 dealer: {}
             },
+            carId: '',
             carEquipments: [],
             carGuarantees: [],
             tabs: [
@@ -100,6 +101,7 @@ export default {
     async created() {
         // 页面加载时获取 id 参数
         const carId = this.$route.params.id
+        this.carId = carId;
         console.log('当前车辆 ID:', carId)  // 可根据需求替换为实际业务逻辑（如请求数据）
         this.fetchCarBaseInfo(carId);  // 调用请求方法
         this.fetchCarEquipments(carId);  // 调用请求方法
@@ -271,7 +273,7 @@ export default {
         async fetchCarImages(carId) {
             let _this = this;
             try {
-                var response = await axios.get(`/api/api/car/image/${carId}`)  // 替换为实际后端接口地址
+                var response = await axios.get(`/car/api/car/image/${carId}`)  // 替换为实际后端接口地址
                 _this.carImages = response.data.data;
                 console.log('获取车辆图片成功:', _this.carImages);
             }
@@ -283,7 +285,7 @@ export default {
         async fetchCarVideo(carId) {
             let _this = this;
             try {
-                var response = await axios.get(`/api/api/car/video/${carId}`)  // 替换为实际后端接口地址
+                var response = await axios.get(`/car/api/car/video/${carId}`)  // 替换为实际后端接口地址
                 _this.carVideo = response.data.data;
                 console.log('获取车辆视频成功:', _this.carVideo);
             }
@@ -294,7 +296,7 @@ export default {
         },
         fetchCarEquipments(carId) {
             let _this = this;
-            axios.get(`/api/api/car/equipment/${carId}`)  // 替换为实际后端接口地址
+            axios.get(`/car/api/car/equipment/${carId}`)  // 替换为实际后端接口地址
                 .then(response => {
                     // 成功获取数据后赋值给data属性
                     // this.carInfo = response.data.carInfo
@@ -309,7 +311,7 @@ export default {
         // 获取卖家保证
         fetchCarGuarantees(carId) {
             let _this = this;
-            axios.get(`/api/api/car/guarantee/${carId}`)  // 替换为实际后端接口地址
+            axios.get(`/car/api/car/guarantee/${carId}`)  // 替换为实际后端接口地址
                 .then(response => {
                     // 成功获取数据后赋值给data属性
                     // this.carInfo = response.data.carInfo
@@ -325,7 +327,7 @@ export default {
         fetchDealerInfo(garageId) {
             console.log('获取经销商信息', garageId);
             let _this = this;
-            axios.get(`/api/api/car/dealer/${garageId}`)  // 替换为实际后端接口地址
+            axios.get(`/car/api/car/dealer/${garageId}`)  // 替换为实际后端接口地址
                 .then(response => {
                     // 成功获取数据后赋值给data属性
                     // this.carInfo = response.data.carInfo
@@ -355,7 +357,7 @@ export default {
         // 新增：定义获取车辆详情的请求方法
         fetchCarBaseInfo(carId) {
             let _this = this;
-            axios.get(`/api/api/car/baseInfo/${carId}`)  // 替换为实际后端接口地址
+            axios.get(`/car/api/car/baseInfo/${carId}`)  // 替换为实际后端接口地址
                 .then(response => {
                     // 成功获取数据后赋值给data属性
                     // this.carInfo = response.data.carInfo
@@ -413,75 +415,6 @@ export default {
             setTimeout(() => {
                 location.href = `https://line.me/R/ti/p/${this.carInfo.dealer.lineId}`;
             }, 1000);
-        },
-        shareToLine() {
-            // 获取当前页面URL
-            const currentUrl = window.location.href;
-            
-            // 获取当前显示的图片URL
-            let shareImage = '';
-            if (this.carImages && this.carImages.length > 0) {
-                shareImage = this.carImages[0];
-            }
-            
-            // 构建分享文本
-            const shareText = `${this.carInfo.title} - ${this.carInfo.dealer.dealerName || ''}
-價格: $${this.carInfo.price || '--'}
-${currentUrl}`;
-            
-            // 检测是否为移动设备
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            // 构建Line应用调用URL
-            const lineAppUrl = `line://msg/text/${encodeURIComponent(shareText)}`;
-            
-            // 构建网页版分享URL
-            let webShareUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`;
-            if (shareImage) {
-                webShareUrl += `&image=${encodeURIComponent(shareImage)}`;
-            }
-            
-            // 尝试调用Line应用（移动端和桌面端都尝试）
-            const tryLineApp = () => {
-                let appOpened = false;
-                
-                // 监听页面失去焦点，表示应用可能被打开
-                const onBlur = () => {
-                    appOpened = true;
-                    window.removeEventListener('blur', onBlur);
-                };
-                window.addEventListener('blur', onBlur);
-                
-                // 尝试打开Line应用
-                if (isMobile) {
-                    window.location.href = lineAppUrl;
-                } else {
-                    // 桌面设备使用iframe尝试，避免页面跳转
-                    const iframe = document.createElement('iframe');
-                    iframe.style.display = 'none';
-                    iframe.src = lineAppUrl;
-                    document.body.appendChild(iframe);
-                    setTimeout(() => {
-                        document.body.removeChild(iframe);
-                    }, 1000);
-                }
-                
-                // 设置超时时间：移动端2秒，桌面端1.5秒
-                const timeout = isMobile ? 2000 : 1500;
-                setTimeout(() => {
-                    window.removeEventListener('blur', onBlur);
-                    if (!appOpened) {
-                        // Line应用没有打开，使用网页版分享
-                        if (isMobile) {
-                            window.open(webShareUrl, '_blank');
-                        } else {
-                            window.open(webShareUrl, '_blank', 'width=600,height=400');
-                        }
-                    }
-                }, timeout);
-            };
-            
-            tryLineApp();
         },
         isYoutubeVideo(url) {
             return url && (url.includes('youtube.com') || url.includes('youtu.be'));

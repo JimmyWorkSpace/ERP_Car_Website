@@ -2,7 +2,7 @@
     <div class="car-detail">
         <div class="main-title-container">
             <div class="first-title">
-                {{ carInfo.dealer.dealerName }} / 
+                {{ carInfo.dealer.dealerName }} /
             </div>
             <div class="second-title">
                 {{ carInfo.saleTitle }}
@@ -37,10 +37,10 @@
                         class="thumbnail" :class="{ active: currentMediaIndex === index }" @click="changeMedia(index)">
                 </div>
                 <!-- Line分享按钮 -->
-                <div class="share-container mt-3">
-                    <button class="btn btn-share-line" @click="shareToLine">
-                        <i class="iconfont">&#xe6f3;</i> LINE 分享
-                    </button>
+                <div class="share-container">
+                    <div class="line-it-button" data-lang="zh_Hant" data-type="share-a" data-env="REAL"
+                        :data-url="'https://sale.carce.cc/car/preview/'+carId" data-color="default" data-size="large"
+                        data-count="false" data-ver="3" style="display: none;"></div>
                 </div>
             </div>
 
@@ -52,18 +52,23 @@
                 </div>
                 <div class="specs mb-3">
                     <div class="row">
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3" v-for="(spec, index) in carInfo.specs" :key="index">
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-3" v-for="(spec, index) in carInfo.specs"
+                            :key="index">
                             <div class="spec-name text-muted">{{ spec.name }}</div>
                             <div class="spec-value">{{ spec.value }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="action-buttons">
-                    <button class="btn btn-phone" @click="callPhone" @mouseenter="phoneButtonHover = true" @mouseleave="phoneButtonHover = false">
-                        <i class="bi bi-telephone"></i> {{ phoneButtonHover ? carInfo.dealer.companyPhone || '暂无电话' : '撥打電話' }}
+                    <button class="btn btn-phone" @click="callPhone" @mouseenter="phoneButtonHover = true"
+                        @mouseleave="phoneButtonHover = false">
+                        <i class="bi bi-telephone"></i> {{ phoneButtonHover ? carInfo.dealer.companyPhone || '暂无电话' :
+                        '撥打電話' }}
                     </button>
-                    <button class="btn btn-line" @click="contactLine" @mouseenter="lineButtonHover = true" @mouseleave="lineButtonHover = false">
-                        <i class="bi bi-chat-dots"></i> {{ lineButtonHover ? carInfo.dealer.lineId || '暂无Line ID' : 'LINE' }}
+                    <button class="btn btn-line" @click="contactLine" @mouseenter="lineButtonHover = true"
+                        @mouseleave="lineButtonHover = false">
+                        <i class="bi bi-chat-dots"></i> {{ lineButtonHover ? carInfo.dealer.lineId || '暂无Line ID' :
+                        'LINE' }}
                     </button>
                 </div>
                 <div class="dealer-info mt-3 text-left">
@@ -115,7 +120,8 @@
                     <div class="equipment-header">
                         車輛描述
                     </div>
-                    <iframe ref="contentFrame" class="content-frame" :srcdoc="getHtmlContent(carInfo.saleDescription)" frameborder="0" width="100%"></iframe>
+                    <iframe ref="contentFrame" class="content-frame" :srcdoc="getHtmlContent(carInfo.saleDescription)"
+                        frameborder="0" width="100%"></iframe>
                     <div style="height: 1em;"></div>
                 </div>
                 <div v-show="activeTab.code === 'dealer_intro'">
@@ -144,13 +150,10 @@
                             <div class="dealer-intro-row">
                                 <div class="dealer-title">LINE</div>
                                 <div class="dealer-content">
-                                    <button 
-                                        class="btn-line-id" 
-                                        @click="contactLine" 
-                                        @mouseenter="lineIdHover = true" 
-                                        @mouseleave="lineIdHover = false"
-                                        v-if="carInfo.dealer.lineId">
-                                        <i class="bi bi-chat-dots"></i> {{ lineIdHover ? carInfo.dealer.lineId : 'LINE聯絡我' }}
+                                    <button class="btn-line-id" @click="contactLine" @mouseenter="lineIdHover = true"
+                                        @mouseleave="lineIdHover = false" v-if="carInfo.dealer.lineId">
+                                        <i class="bi bi-chat-dots"></i> {{ lineIdHover ? carInfo.dealer.lineId :
+                                        'LINE聯絡我' }}
                                     </button>
                                     <span v-else>--</span>
                                 </div>
@@ -164,7 +167,8 @@
                             <img :src="carInfo.dealer.coverImage" alt="店家封面">
                         </div>
                     </div>
-                    <iframe ref="dealerContentFrame" class="content-frame" :srcdoc="getHtmlContent(carInfo.dealer.description)" frameborder="0" width="100%"></iframe>
+                    <iframe ref="dealerContentFrame" class="content-frame"
+                        :srcdoc="getHtmlContent(carInfo.dealer.description)" frameborder="0" width="100%"></iframe>
                 </div>
             </div>
         </div>

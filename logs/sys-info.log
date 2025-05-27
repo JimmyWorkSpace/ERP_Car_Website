@@ -1,17 +1,17 @@
-17:24:07.990 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.2.Final
-17:24:07.992 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 1.8.0_442-442 on LAPTOP-AC36PRTJ with PID 21544 (C:\Users\mingn\Documents\jimmy\ERP_Car_Website\ruoyi-vue\ruoyi-admin\target\classes started by mingn in C:\Users\mingn\Documents\jimmy\ERP_Car_Website\ruoyi-vue)
-17:24:08.002 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,681] - The following 1 profile is active: "druid"
-17:24:11.471 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
-17:24:11.472 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
-17:24:11.473 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.58]
-17:24:11.571 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
-17:24:12.349 [restartedMain] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
-17:24:12.482 [restartedMain] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
-17:24:13.114 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
-17:24:13.136 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-17:24:13.137 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
-17:24:13.138 [restartedMain] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
-17:24:13.139 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+18:08:30.134 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.2.Final
+18:08:30.136 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 1.8.0_442-442 on LAPTOP-AC36PRTJ with PID 10988 (C:\Users\mingn\Documents\jimmy\ERP_Car_Website\ruoyi-vue\ruoyi-admin\target\classes started by mingn in C:\Users\mingn\Documents\jimmy\ERP_Car_Website\ruoyi-vue)
+18:08:30.147 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,681] - The following 1 profile is active: "druid"
+18:08:33.924 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+18:08:33.925 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+18:08:33.925 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.58]
+18:08:34.025 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+18:08:34.747 [restartedMain] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+18:08:34.884 [restartedMain] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+18:08:35.529 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+18:08:35.548 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+18:08:35.548 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+18:08:35.549 [restartedMain] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+18:08:35.550 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
   Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -19,29 +19,68 @@
   Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
   Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
-17:24:13.139 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-17:24:13.140 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
-17:24:13.140 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@66a55c
-17:24:14.736 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - [removeStaticCache,60] - Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
-17:24:14.737 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - [removeStaticCache,60] - Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
-17:24:14.739 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - [removeStaticCache,60] - Clear tk.mybatis.mapper.version.VersionUtil CACHE cache.
-17:24:14.739 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - [removeEntityHelperCache,83] - Clear EntityHelper entityTableMap cache.
-17:24:15.568 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
-17:24:15.859 [restartedMain] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
-17:24:15.867 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 8.395 seconds (JVM running for 9.207)
-17:25:02.045 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-17:25:02.129 [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-2 - Starting...
-17:25:02.138 [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-2 - Start completed.
-17:25:17.194 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-17:25:17.510 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-2 - Shutdown initiated...
-17:25:17.519 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-2 - Shutdown completed.
-17:25:17.519 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
-17:25:17.520 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-17:25:17.520 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
-17:25:17.520 [SpringApplicationShutdownHook] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
-17:25:17.524 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
-17:25:17.531 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
-17:33:38.533 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.2.Final
-17:33:38.533 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 1.8.0_442-442 on LAPTOP-AC36PRTJ with PID 45120 (C:\Users\mingn\Documents\jimmy\ERP_Car_Website\ruoyi-vue\ruoyi-admin\target\classes started by mingn in C:\Users\mingn\Documents\jimmy\ERP_Car_Website\ruoyi-vue)
-17:33:38.536 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,681] - The following 1 profile is active: "prod"
-17:33:42.355 [restartedMain] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+18:08:35.550 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+18:08:35.550 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+18:08:35.550 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@1554a538
+18:08:37.211 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - [removeStaticCache,60] - Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+18:08:37.213 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - [removeStaticCache,60] - Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+18:08:37.214 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - [removeStaticCache,60] - Clear tk.mybatis.mapper.version.VersionUtil CACHE cache.
+18:08:37.214 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - [removeEntityHelperCache,83] - Clear EntityHelper entityTableMap cache.
+18:08:38.125 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+18:08:38.441 [restartedMain] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+18:08:38.449 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 9.017 seconds (JVM running for 9.942)
+18:10:09.918 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+18:10:09.983 [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-2 - Starting...
+18:10:09.993 [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-2 - Start completed.
+18:12:02.079 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+18:12:02.428 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-2 - Shutdown initiated...
+18:12:02.438 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-2 - Shutdown completed.
+18:12:02.439 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+18:12:02.439 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+18:12:02.439 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+18:12:02.439 [SpringApplicationShutdownHook] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+18:12:02.442 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+18:12:02.451 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+18:12:07.555 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.2.Final
+18:12:07.560 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 1.8.0_442-442 on LAPTOP-AC36PRTJ with PID 34656 (C:\Users\mingn\Documents\jimmy\ERP_Car_Website\ruoyi-vue\ruoyi-admin\target\classes started by mingn in C:\Users\mingn\Documents\jimmy\ERP_Car_Website\ruoyi-vue)
+18:12:07.560 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,681] - The following 1 profile is active: "druid"
+18:12:10.523 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+18:12:10.524 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+18:12:10.524 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.58]
+18:12:10.634 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+18:12:11.430 [restartedMain] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+18:12:11.557 [restartedMain] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+18:12:12.169 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+18:12:12.192 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+18:12:12.193 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+18:12:12.194 [restartedMain] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+18:12:12.196 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+18:12:12.197 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+18:12:12.197 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+18:12:12.197 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@2c7e12d
+18:12:13.782 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - [removeStaticCache,60] - Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+18:12:13.783 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - [removeStaticCache,60] - Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+18:12:13.784 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - [removeStaticCache,60] - Clear tk.mybatis.mapper.version.VersionUtil CACHE cache.
+18:12:13.784 [restartedMain] INFO  t.m.m.a.MapperCacheDisabler - [removeEntityHelperCache,83] - Clear EntityHelper entityTableMap cache.
+18:12:14.626 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+18:12:14.925 [restartedMain] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+18:12:14.936 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 7.889 seconds (JVM running for 8.547)
+18:12:20.414 [http-nio-8081-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+18:12:20.467 [http-nio-8081-exec-2] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-2 - Starting...
+18:12:20.474 [http-nio-8081-exec-2] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-2 - Start completed.
+18:13:50.434 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+18:13:50.779 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-2 - Shutdown initiated...
+18:13:50.791 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-2 - Shutdown completed.
+18:13:50.791 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+18:13:50.791 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+18:13:50.791 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+18:13:50.792 [SpringApplicationShutdownHook] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+18:13:50.794 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+18:13:50.804 [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
