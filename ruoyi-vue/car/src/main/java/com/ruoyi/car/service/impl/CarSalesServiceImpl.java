@@ -48,10 +48,15 @@ public class CarSalesServiceImpl implements CarSalesService {
 	 * @return
 	 */
 	private String generateShortCode() {
-		UUID uuid = UUID.randomUUID();
 		String shortId = "";
+		String letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		do {
-			shortId = uuid.toString().replace("-", "").substring(2, 6);
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < 4; i++) {
+				int index = (int) (Math.random() * letters.length());
+				sb.append(letters.charAt(index));
+			}
+			shortId = sb.toString();
 		}
 		while (getByUid(shortId) != null);
 		return shortId;
