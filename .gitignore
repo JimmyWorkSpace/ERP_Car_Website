@@ -5,3 +5,4 @@ ruoyi-vue/ruoyi-framework/bin/
 ruoyi-vue/ruoyi-generator/bin/
 ruoyi-vue/ruoyi-quartz/bin/
 logs/
+car/target/
