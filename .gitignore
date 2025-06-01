@@ -5,3 +5,8 @@ ruoyi-vue/ruoyi-framework/bin/
 ruoyi-vue/ruoyi-generator/bin/
 ruoyi-vue/ruoyi-quartz/bin/
 logs/
+car/target/
+car/.project
+car/.idea/checkstyle-idea.xml
+car/.idea/vcs.xml
+car/.idea/workspace.xml
