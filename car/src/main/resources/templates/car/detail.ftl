@@ -14,14 +14,14 @@
         <div class="col-md-6">
             <div class="swiper-wrapper-container">
                 <div class="swiper-container">
-                    <iframe  style="width:100%;height:380px!important" :src="convertToEmbedUrl(media.url)" frameborder="0" v-if="media.type === 'youtube'" v-for="(media, index) in allSwaggerImages" :key="index"
+                    <iframe  style="width:100%;aspect-ratio: 3/2;" :src="convertToEmbedUrl(media.url)" frameborder="0" v-if="media.type === 'youtube'" v-for="(media, index) in allSwaggerImages" :key="index"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                     </iframe>
-                    <video controls style="width:100%;height:380px" v-if="media.type === 'video'" v-for="(media, index) in allSwaggerImages" :key="index">
+                    <video controls style="width:100%;aspect-ratio: 3/2;" v-if="media.type === 'video'" v-for="(media, index) in allSwaggerImages" :key="index">
                         <source :src="media.url" type="video/mp4">
                     </video>
-                    <img style="width:100%;height:380px" class="swiper_image" :src="media.url" v-if="media.type === 'image'" v-for="(media, index) in allSwaggerImages" :key="index" alt="汽车图片">
+                    <img style="width:100%;aspect-ratio: 3/2;" class="swiper_image" :src="media.url" v-if="media.type === 'image'" v-for="(media, index) in allSwaggerImages" :key="index" alt="汽车图片">
                 </div>
                 <div class="thumbnail-container">
                     <img v-for="(media, index) in allSwaggerImages" :key="index" :src="getThumbnailSrc(media)"

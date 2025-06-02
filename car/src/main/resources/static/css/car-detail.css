@@ -2,6 +2,12 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  overflow-x: hidden;
+}
+@media (max-width: 768px) {
+  .car-detail {
+    padding: 0 10px;
+  }
 }
 .car-detail .main-title-container {
   display: flex;
@@ -178,14 +184,15 @@
   padding: 10px 0px 15px 5px;
   border-radius: 5px;
   padding-bottom: 0px;
+  overflow-x: hidden;
 }
 .car-detail .specs .row {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -10px;
+  margin: 0;
 }
 .car-detail .specs .col-6 {
-  padding: 0 10px;
+  padding: 0 5px;
   margin-bottom: 10px;
   text-align: left;
 }

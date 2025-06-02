@@ -20,6 +20,10 @@
   }
 
   @media (max-width: 768px) {
+	body{
+		width: 99%;
+		overflow-x: hidden;
+	}
     .main-container {
         padding-left: 0 !important;
         padding-right: 0 !important;
