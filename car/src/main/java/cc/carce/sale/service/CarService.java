@@ -4,6 +4,7 @@ import cc.carce.sale.dto.CarBaseInfoDto;
 import cc.carce.sale.dto.CarEquipmentDto;
 import cc.carce.sale.dto.CarGuaranteeDto;
 import cc.carce.sale.entity.CarEntity;
+import cc.carce.sale.entity.CarSalePhotoEntity;
 import cc.carce.sale.entity.CarSalesEntity;
 import cc.carce.sale.entity.dto.CarEquipment;
 import cc.carce.sale.entity.dto.CarGuarantee;
@@ -28,6 +29,9 @@ public class CarService {
 
 	@Resource
 	private ImageService imageService;
+
+	@Resource
+	private CarSalePhotoService carSalePhotoService;
 	
 	@Resource
 	private FtpService ftpService;
@@ -125,9 +129,10 @@ public class CarService {
 		CarSalesEntity cs = carSalesService.getByUid(uid);
 		try {
 			if(cs != null) {
-				String dir = "/img/car_sale/" + cs.getId() + "/img";
-				List<String> images = ftpService.listFiles(dir);
-				return images.stream().map(img -> imageService.replaceImagePrefix(dir + "/" + img)).collect(Collectors.toList());
+				List<CarSalePhotoEntity> photos = carSalePhotoService.getByCarSalesId(cs.getId());
+//				String dir = "/img/car_sale/" + cs.getId() + "/img";
+//				List<String> images = ftpService.listFiles(dir);
+				return photos.stream().map(img -> imageService.replaceImagePrefix(img.getPhotoUrl())).collect(Collectors.toList());
 			}
 		} catch (Exception e) {
 			log.error("从ftp获取图片信息失败", e);

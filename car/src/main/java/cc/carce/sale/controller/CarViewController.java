@@ -53,26 +53,26 @@ public class CarViewController {
         	model.addAttribute("image", "");
         	model.addAttribute("imagesJson", JSONUtil.toJsonPrettyStr(new ArrayList<>()));
         	model.addAttribute("videosJson", JSONUtil.toJsonPrettyStr(new ArrayList<>()));
+
+			Future<Boolean> videoF = ThreadUtil.execAsync(() -> {
+				List<String> videos = carService.getVideoByUid(uid);
+				model.addAttribute("videosJson", JSONUtil.toJsonPrettyStr(videos));
+
+				return true;
+			});
+
 //            获取图片
-        	Future<Boolean> imagesF = ThreadUtil.execAsync(() -> {
-        		List<String> images = carService.getImagesByUid(uid);
-        		if(CollUtil.isNotEmpty(images)) {
-        			model.addAttribute("image", images.get(0));
-        		}else {
-        			model.addAttribute("image", "");
-        		}
+			List<String> images = carService.getImagesByUid(uid);
+			if(CollUtil.isNotEmpty(images)) {
+				model.addAttribute("image", images.get(0));
+			}else {
+				model.addAttribute("image", "");
+			}
+
+			model.addAttribute("imagesJson", JSONUtil.toJsonPrettyStr(images));
         		
-        		model.addAttribute("imagesJson", JSONUtil.toJsonPrettyStr(images));
-        		
-        		return true;
-        	});
-        	
-        	Future<Boolean> videoF = ThreadUtil.execAsync(() -> {
-        		List<String> videos = carService.getVideoByUid(uid);
-        		model.addAttribute("videosJson", JSONUtil.toJsonPrettyStr(videos));
-        		
-        		return true;
-        	});
+
+
         	
             // 获取车辆基本信息
             CarBaseInfoDto carInfo = carService.getBaseInfoByUidId(uid);
@@ -90,9 +90,6 @@ public class CarViewController {
             // 设置网站图标
             model.addAttribute("favicon", webUrl + "/favicon.ico");
             
-            
-            
-            imagesF.get(5, TimeUnit.SECONDS);
             videoF.get(5, TimeUnit.SECONDS);
             // 获取当前请求的完整URL
             String requestUrl = req.getRequestURL().toString();

@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
 @Slf4j
 @Service
@@ -37,5 +38,12 @@ public class CarSalePhotoService {
 
       carSalePhotoMapper.insert(entity);
     }
+  }
+
+  public List<CarSalePhotoEntity> getByCarSalesId(Long id) {
+    Example example = new Example(CarSalePhotoEntity.class);
+    example.createCriteria().andEqualTo("carSalesId", id);
+    example.orderBy("photoOrder");
+    return carSalePhotoMapper.selectByExample(example);
   }
 }
