@@ -15,8 +15,8 @@ new Vue({
         carEquipments: [],
         carGuarantees: [],
         tabs: [
-            { title: '车辆配备', code: 'car_equipments' },
-            { title: '车商介绍', code: 'dealer_intro' },
+            { title: '車輛配備', code: 'car_equipments' },
+            { title: '車商介紹', code: 'dealer_intro' },
         ],
         visibleLightbox: false,
         lightboxIndex: 0,
